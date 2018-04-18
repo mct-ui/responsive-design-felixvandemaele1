@@ -2,19 +2,24 @@
   #FONTS
 \*------------------------------------*/
 @font-face {
-font-family: "HK Grotesk Web";
-font-weight: 200;
-src: url("../fonts/hkgrotesk-light-webfont.woff") format("woff"), url("../fonts/hkgrotesk-light-webfont.woff2") format("woff2");
+    font-family: "HK Grotesk Web";
+    font-weight: 200;
+    src: url("../fonts/hkgrotesk-light-webfont.woff2") format("woff2"),url(),
+         url("../fonts/hkgrotesk-light-webfont.woff") format("woff");
 }
+
 @font-face {
     font-family: "HK Grotesk Web";
     font-weight: 400;
-    src: url("../fonts/hkgrotesk-regular-webfont.woff") format("woff"), url("../fonts/hkgrotesk-regular-webfont.woff2") format("woff2");
+    src: url("../fonts/hkgrotesk-regular-webfont.woff2") format("woff2"),url(),
+         url("../fonts/hkgrotesk-regular-webfont.woff") format("woff");
 }
+
 @font-face {
     font-family: "HK Grotesk Web";
     font-weight: 600;
-    src: url("../fonts/hkgrotesk-medium-webfont.woff") format("woff"), url("../fonts/hkgrotesk-medium-webfont.woff2") format("woff2");
+    src: url("../fonts/hkgrotesk-medium-webfont.woff2") format("woff2"),url(),
+         url("../fonts/hkgrotesk-medium-webfont.woff") format("woff");
 }
 /*------------------------------------*\
   #GENERIC
@@ -27,9 +32,9 @@ src: url("../fonts/hkgrotesk-light-webfont.woff") format("woff"), url("../fonts/
 */
 
 html {
-    font-size: 20px;
-    line-height: 1.;
-    font-family: "HK Grotesk", arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: "HK Grotesk Web", Helvetica, arial, sans-serif;
     color: #202024;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
@@ -82,26 +87,29 @@ img {
     Default markup for typographic elements
 */
 
+h1,
+h2,
+h3 {
+    font-weight: 200;
+}
+
 h1 {
     font-size: 36px;
-    font-weight: 200;
     line-height: 48px;
     margin: 0 0 24px;
+    font-weight: 400;
 }
 
 h2 {
     font-size: 32px;
     line-height: 40px;
     margin: 0 0 24px;
-    font-weight:200;
-
 }
 
 h3 {
     font-size: 26px;
     line-height: 32px;
     margin: 0 0 24px;
-    font-weight: 200;
 }
 
 h4,
@@ -174,19 +182,31 @@ a:focus {
     color: #3E3EA8;
 }
 
+form {
+    font-weight: 100;
+}
+
+input[type=text] {
+    border: none;
+    border-bottom: 1px solid white;
+    width: 100%;
+    height: 62px;
+    background-color: #5051DB;
+    color: white;
+}
+
+input::placeholder,
+:-ms-input-placeholder,
+::-ms-input-placeholder,
+::-moz-placeholder,
+:-moz-placeholder {
+    color: white;
+    opacity: 1.
+}
+
 /*------------------------------------*\
   #OBJECTS
 \*------------------------------------*/
-/*
-    Objects: List
-    ---
-    Small reusable object to remove default list styling from lists
-*/
-
-.o-list {
-    list-style: none;
-    padding: 0;
-}
 
 /*
     Objects: Row
@@ -206,10 +226,23 @@ a:focus {
     padding: 48px 24px 24px;
 }
 
+.o-row--neutral-x-light {
+    background-color: #F7F7FA;
+}
+
+.o-row--neutral-base {
+    background-color: #5051DB;
+}
+
 @media (min-width: 768px) {
     .o-row {
         padding-left: 48px;
         padding-right: 48px;
+    }
+
+    .o-rw--md {
+        padding-top: 48px;
+        padding-bottom: 24px;
     }
 
     .o-row--lg {
@@ -227,7 +260,7 @@ a:focus {
 .o-container {
     margin-left: auto;
     margin-right: auto;
-    max-width: 70.5em; /* 70.5 * 16px = 1128px */
+    max-width: 56.4em; /* 90 * 16px = 1440px */
 }
 
 /*
@@ -347,28 +380,149 @@ a:focus {
     align-content: space-between;
 }
 
+/*
+    Objects: List
+    ---
+    Small reusable object to remove default list styling from lists
+*/
+
+.o-list {
+    list-style: none;
+    padding: 0;
+}
+
+/*
+    Objects: section
+    ---
+    Creates vertical whitespace between adjacent sections inside a row
+*/
+
+.o-section {
+    overflow: auto;
+}
+
+.o-section + .o-section {
+    margin-top: 24px;
+}
+
+@media (min-width: 768px) {
+    .o-section--lg + .o-section--lg,
+    .o-section--xl + .o-section--xl {
+        margin-top: 48px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .o-section--xl + .o-section--xl {
+        margin-top: 72px;
+    }
+}
+
 /*------------------------------------*\
   #COMPONENTS
 \*------------------------------------*/
+
+/*
+    Component: header
+    ---
+    Main header of the website
+*/
+
+.c-header__nav {
+    display: none;
+}
+
+@media (min-width: 992px) {
+    .c-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .c-header__nav {
+        display: block;
+    }
+}
+
+/*
+    Component: Lead
+    ---
+    Lead type treatments to style everything that differs from standard typography elements
+*/
+
+.c-lead {
+    font-weight: 200;
+}
+
+.c-lead--lg {
+    font-size: 20px;
+    line-height: 32px;
+}
+
+.c-lead--xl {
+    font-size: 26px;
+    line-height: 32px;
+}
+
+.c-lead--xxl {
+    font-size: 32px;
+    line-height: 40px;
+}
+
+.c-lead--xxxl {
+    font-size: 36px;
+    line-height: 48px;
+}
+
+@media (min-width: 768px) {
+    .c-lead--lg {
+        font-size: 23px;
+        line-height: 32px;
+    }
+
+    .c-lead--xl {
+        font-size: 32px;
+        line-height: 40px;
+    }
+
+    .c-lead--xxl {
+        font-size: 41px;
+        line-height: 48px;
+    }
+
+    .c-lead--xxxl {
+        font-size: 52px;
+        line-height: 64px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .c-lead--lg {
+        font-size: 26px;
+        line-height: 36px;
+    }
+
+    .c-lead--xl {
+        font-size: 36px;
+        line-height: 48px;
+    }
+
+    .c-lead--xxl {
+        font-size: 52px;
+        line-height: 64px;
+    }
+
+    .c-lead--xxxl {
+        font-size: 66px;
+        line-height: 72px;
+    }
+}
+
 /*
     Component: Logo
     ---
     Website main logo
 */
-
-.c-header__nav{
-    display: none;
-}
-
-@media (min-width: 992px) {
-    .c-header{
-        display: flex;
-        justify-content: space-between;
-    }
-    .c-header__nav{
-        display: block;
-    }
-}
 
 .c-logo {
     height: 32px;
@@ -379,10 +533,11 @@ a:focus {
 }
 
 @media (min-width: 768px) {
-    .c-logo__symbol {
+    .c-logo {
         height: 40px;
     }
 }
+
 /*
     Component: Nav
     ---
@@ -393,28 +548,27 @@ a:focus {
     font-size: 18px;
     line-height: 24px;
 }
-.c-nav--meta{
+
+.c-nav--meta {
     font-size: 16px;
 }
 
 .c-nav__link {
-    text-decoration: none;
-    font-weight: 400;
-    padding : 8px 0;
     display: block;
+    text-decoration: none;
+    color: #231f20;
+    font-weight: 400;
+    padding: 8px 0;
 }
 
 .c-nav__link,
 .c-nav__link:visited,
 .c-nav__link:active {
-    display: block;
-    color:  #202024;
+    color: #202024;
 }
 
-.c-nav__link--meta ,
-.c-nav__link--meta: visited,
-.c-nav__link--meta: active{
-    color : #6C6C75;
+.c-nav__link--meta {
+    color: #6C6C75;
 }
 
 .c-nav__link:hover,
@@ -425,20 +579,90 @@ a:focus {
 @media (min-width: 768px) {
     .c-nav__list {
         display: flex;
-        /* margin : 0 -16px auto -16px; */
-        margin-left: -16px;  /* een ul heeft standaard margin-bottom door dit apart te schrijven hou je deze margin */
+        margin-left: -16px;
         margin-right: -16px;
     }
 
     .c-nav__link {
-        padding: 8px 16px ;
+        padding: 8px 16px;
     }
+}
+
+/*
+    Component: CTA link
+    ---
+    Small cta link with custom animation
+*/
+
+.c-link-cta {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    padding: 4px 0;
+    /* transition: color .175s ease-in; */
+}
+
+.c-link-cta,
+.c-link-cta:visited,
+.c-link-cta:active {
+    color: #7373F5;
+}
+
+.c-link-cta::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    transform: scaleX(.5);
+    transform-origin: left;
+    background-color: #7373F5;
+    /* transition: width .175s ease-in; */
+    transition-property: width background-color;
+    transition-duration: .175s;
+    transition-timing-function: ease-in;
+}
+
+.c-link-cta:hover {
+    color: #3E3EA8;
+
+}
+
+.c-link-cta:hover::after {
+    transform: scaleX(1);
 }
 
 
 /*------------------------------------*\
   #UTILITIES
 \*------------------------------------*/
+
+/*
+    Utilities: color
+    ---
+    Utility classes to put specific colors onto elements
+*/
+
+.u-color-primary-light {
+    color: #7373F5 !important;
+}
+
+.u-color-primary-base {
+    color: #5051DB !important;
+}
+
+.u-color-primary-dark {
+    color: #3E3EA8 !important;
+}
+
+.u-color-primary-light {
+    color: #FFFFFF !important;
+}
 
 /*
     Utilities: max-width
@@ -669,6 +893,20 @@ a:focus {
     }
 }
 
+/*
+    Utilities: spacing
+    ---
+    Utility classes to put specific margins and paddings onto elements
+*/
+
+.u-pt-clear {
+    padding-top: 0 !important;
+}
+
+.u-p-more {
+    padding: 72px 48px;
+}
+
 /*------------------------------------*\
   #MEDIA
 \*------------------------------------*/
@@ -731,7 +969,7 @@ a:focus {
     }
     /*
      * Don't show links that are fragment identifiers,
-     * or use the javascript: pseudo protocol
+     * or use the `javascript:` pseudo protocol
      */
     a[href^="#"]:after,
     a[href^="javascript:"]:after {
@@ -766,4 +1004,29 @@ a:focus {
     h3 {
         page-break-after: avoid;
     }
+}
+.c-logo {
+}
+
+.c-logo__path {
+  transition: all 1s ease-in-out;
+}
+
+.c-logo__path--1 {
+  fill: #5051DB;
+}
+
+.c-logo__path--2 {
+  fill: #3887F7;
+}
+
+.c-logo:hover .c-logo__path--1 {
+  fill: #3887F7;
+  d: path("M16.929,0,0,10V30L16.929,20Z");
+}
+
+.c-logo:hover .c-logo__path--2 {
+  fill: #5051DB;
+  d: path("M15.659,19.25v20l16.929-10v-20Z");
+  transform: translate(1.27 0.75);
 }
